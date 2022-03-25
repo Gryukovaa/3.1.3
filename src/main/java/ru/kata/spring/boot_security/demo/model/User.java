@@ -1,11 +1,12 @@
 package ru.kata.spring.boot_security.demo.model;
 
-import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -13,8 +14,8 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long userId;
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
 
     @Column(name = "firstname")
     private String firstname;
@@ -22,7 +23,7 @@ public class User implements UserDetails {
     @Column(name = "lastname")
     private String lastname;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -47,8 +48,8 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
     public String getFirstname() {
@@ -83,7 +84,6 @@ public class User implements UserDetails {
         return roles;
     }
 
-
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
@@ -91,7 +91,7 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + userId +
+                "id=" + id +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
@@ -100,17 +100,18 @@ public class User implements UserDetails {
                 '}';
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId.equals(user.userId) && firstname.equals(user.firstname) && lastname.equals(user.lastname) && email.equals(user.email) && password.equals(user.password) && roles.equals(user.roles);
+        return id.equals(user.id) && firstname.equals(user.firstname) && lastname.equals(user.lastname) && email.equals(user.email) && password.equals(user.password) && roles.equals(user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, firstname, lastname, email, password, roles);
+        return Objects.hash(id, firstname, lastname, email, password, roles);
     }
 
     // UserDetails overrides
