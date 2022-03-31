@@ -16,4 +16,5 @@ fetch('http://localhost:8080/users/u')
 
             console.log(table)
             $('#user_table').append(table)
+            $('#show_user').html(data.firstname + ' with role: ' + role)
     })

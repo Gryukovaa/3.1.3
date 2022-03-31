@@ -89,7 +89,7 @@ $('#add_button').on('click',function (){
                 '<td>' + window.formNewUser.firstname.value + '</td>' +
                 '<td>' + window.formNewUser.lastname.value + '</td>' +
                 '<td>' + window.formNewUser.email.value + '</td>' +
-                '<td>' + data.roles[0].role + '</td>' +
+                '<td>' + roleList(data) + '</td>' +
                 '<td> <button id="' + user.id + '" type="button" class="edit btn btn-info" data-toggle="modal">' + 'Edit' + '</button> </td>' +
                 '<td> <button id="' + user.id + '" type="button" class="delete btn btn-danger" data-toggle="modal" >' + 'Delete' + '</button> </td>' +
                 '</tr>');
@@ -235,7 +235,7 @@ $(document).delegate('.edit','click',function (){
                         '<td>' + window.formModalEdit.edit_firstname.value + '</td>' +
                         '<td>' + window.formModalEdit.edit_lastname.value + '</td>' +
                         '<td>' + window.formModalEdit.edit_email.value + '</td>' +
-                        '<td>' + data.roles[0].role + '</td>' +
+                        '<td>' + roleList(data) + '</td>' +
                         '<td> <button id="' + id + '" type="button" class="edit btn btn-info" data-toggle="modal">' + 'Edit' + '</button> </td>' +
                         '<td> <button id="' + id + '" type="button" class="delete btn btn-danger" data-toggle="modal" >' + 'Delete' + '</button> </td>' +
                         '</tr>');

@@ -1,5 +1,12 @@
 function roleList(data) {
-    var role = data.roles[0].role
-    /*Здесь было куча какашек, пока я не сдела так*/
+
+    var role =''
+    if(data.roles.length > 1) {
+       role = data.roles[0].role + ',' + data.roles[1].role
+    }
+    else {
+        role = data.roles[0].role
+    }
+
     return role;
 }
